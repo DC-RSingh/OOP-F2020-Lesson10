@@ -200,7 +200,7 @@ public class Vector2D
 
     public static Vector2D moveTowards(final Vector2D current, final Vector2D target, final float max_distance_delta)
     {
-        var vector = target;
+        var vector = new Vector2D(target);
         vector.subtract(current);
         final var magnitude = vector.getMagnitude();
 
@@ -221,11 +221,11 @@ public class Vector2D
 
     public static Vector2D reflect(final Vector2D in_direction, final Vector2D in_normal)
     {
-        var in_normal1 = in_normal;
-        in_normal1.setScale(-2.0f * dot(in_normal1, in_direction));
-        in_normal1.add(in_direction);
+        var vector = new Vector2D(in_normal);
+        vector.setScale(-2.0f * dot(vector, in_direction));
+        vector.add(in_direction);
 
-        return in_normal1;
+        return vector;
     }
 
     public static Vector2D perpendicular(final Vector2D in_direction)
